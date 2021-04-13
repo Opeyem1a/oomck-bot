@@ -6,3 +6,4 @@ autocorrect
 pandas
 eel
 nltk
+flickr_api

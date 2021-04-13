@@ -3,6 +3,7 @@
 *.log
 tmp/
 venv
+flickr/flickr_keys.py
 
 __pycache__
 Pipfile
