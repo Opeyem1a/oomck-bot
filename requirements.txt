@@ -7,3 +7,4 @@ pandas~=1.2.4
 eel~=0.14.0
 nltk~=3.6.1
 google-cloud-translate==2.0.1
+wikipedia-api~=0.5.4
