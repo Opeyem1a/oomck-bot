@@ -1,5 +1,6 @@
 from es import ElasticSearch
 from nlp.cleaner import Cleaner
+from nlp.translate import Translate
 
 DEFAULT = [
     "Sorry, I don't get what you're saying, can you try again?",
@@ -22,18 +23,24 @@ class Bot:
     def __init__(self):
         self.cleaner = Cleaner
         self.es = ElasticSearch
+        self.translate = Translate
 
     def ask(self, raw_input_string):
         """
         :param raw_input_string: Users question as raw string
         :return: Bots response as string
         """
-        query = self.cleaner.clean(raw_input_string)
+        translated_input_string, lang = self.translate.translate_to_english(raw_input_string)
+        query = self.cleaner.clean(translated_input_string)
         results = self.es.search(query)
 
         if len(results) > 0:
-            return results[0]["_source"]['response']
+            response = results[0]["_source"]['response']
+            response, src_lang = self.translate.translate_to_lang(response, lang)
+            return response
 
         from random import randint
 
-        return DEFAULT[randint(0, len(DEFAULT) - 1)]
+        response = DEFAULT[randint(0, len(DEFAULT) - 1)]
+        response, src_lang = self.translate.translate_to_lang(response, lang)
+        return response

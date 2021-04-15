@@ -3,6 +3,7 @@
 *.log
 tmp/
 venv
+*.json
 
 __pycache__
 Pipfile
