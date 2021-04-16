@@ -47,3 +47,18 @@ The following features of our bot could be put in an API for others to use.
 3. Processing and loading of data from a JSON file into an Elastic Search instance.
 4. Answer questions regarding the Fast and Furious franchise.
 5. The basic structure of our chat-bot allows it to be used with a variety of datasets according to a developer's specific needs.
+
+### API Features Implemented in Individual Project
+**Google Cloud Translate API**
+- This is used for automatic translation in the chatbot.
+
+- __Why:__ Data in our ElasticSearch Database is stored in english, so it widely expands the scope of our bot to convert user input into english before querying for a response.
+
+- __Feature:__ The bot will now also automatically convert any response (whether from the database, or one of the many default response options) into the language that was used to query it. This additional point has obvious user experience benefits for foreign language users.
+
+**Wikipedia API**
+- This is used as a sort of global noun definition tool.
+
+- __Why:__ I found that the bot would grind conversations to a halt when asked about topics outside of its conversational scope. In A3, we added more default responses to solve this, but I thought more was needed.
+
+- __Feature:__ In order to give the illusion that the bot truly is conversing with the user, it will actually query wikipedia for the page corresponding to the first noun encountered in a hard-to-understand input string. After doing this, the bot will respond with the first sentence of the page summary (a short description of the noun itself) along with an appended follow-up sentence to redirect the conversation. This allows the bot to more naturally "respond" to user input that deviates from the topic at hand (i.e. the Fast and the Furious move franchise).
