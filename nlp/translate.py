@@ -9,18 +9,21 @@ class Translate:
 
     @staticmethod
     def translate_to_english(text):
-        return Translate.translate_text(text, 'en')
+        """
+        Wrapper method to translate text into English, specifically
+        """
+        return Translate.translate_to_lang(text, 'en')
 
     @staticmethod
-    def translate_to_lang(text, lang):
-        return Translate.translate_text(text, lang)
-
-    @staticmethod
-    def translate_text(text: string, target_lang: string):
+    def translate_to_lang(text: string, target_lang: string):
         """Translates text into the target language. From Google Developer Quickstart Guide
 
         Target must be an ISO 639-1 language code.
         See https://g.co/cloud/translate/v2/translate-reference#supported_languages
+
+        :param text: Any text
+        :param target_lang: The language code of the target language
+        :return: A tuple of (Translated text, Detected language of original text)
         """
         translate_client = translate.Client()
 
@@ -42,6 +45,10 @@ class Translate:
 
     @staticmethod
     def log_translation(result: dict):
+        """
+        Logs translation actions to the console
+        :param result: The resulting dictionary from the API call
+        """
         print(f"Translation | {result.get('input')} -> "
               f"{result.get('translatedText')} | "
               f"Source Lang: {result.get('detectedSourceLanguage')}")

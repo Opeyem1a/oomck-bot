@@ -75,4 +75,4 @@ class Bot:
 
         from .wikipedia import Wikipedia
         wikipedia = Wikipedia()
-        return wikipedia.get_page_summary(page_title)
+        return wikipedia.get_page_summary_intro(page_title)
